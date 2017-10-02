@@ -1,0 +1,32 @@
+Codebook explaining the different variables used and any transformations applied in scripts for data cleaning project.
+
+run_analysis.R
+
+file names
+
+trainfile : training data
+testfile : test data
+trainheader : train label data
+testheader : test label data
+features_labels : file containing features name
+activilty_labels : file containing activity text labels
+sub_trainfile : file for subject numbers for training observations
+sub_testfile : file for subject numbers for test observations
+
+variables
+
+totalset : contains joined train and test observations
+totalhead : contains joined labels for train and test observations
+totalsub : contains joined list of subjects from train and test observations
+cols : it keeps the features columns names and numbers
+cols_numbers : stores columns numbers to keep based in the criteria of features that only contains mean and standard deviation observations
+cols_names: it keeps the column names that only contains mean and standard deviation observations. These are used to give descriptive name to each feature
+averageset : stores the final result grouped by activity and subject with average value of all features for each group.
+
+transformations
+
+totalset with all features is filtered based on the given columns for mean and std values. 
+totalhead is the values transformed to text label by doing a lookup of values of total_labels into activity_labels dataframe
+totalset is prepared by doing column bind of observations, activity labels and subject numbers
+name of columns in totalset are replaced as provided in cols_names
+averages is obtained by using dplyr library and chaining the functions groupby and summarize_all
